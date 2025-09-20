@@ -56,7 +56,11 @@ Constraints
 -10^9 <= Value of nodes <= 10^9
 
 -10^9 <= k <= 10^9
-*/    bool binaryTreeSearching(TreeNode *root, int k)
+
+*/
+
+// EFFICIENT
+bool binaryTreeSearching(TreeNode *root, int k)
     { if(root==NULL)return false;
       
       if(root->val==k)return true;
@@ -68,4 +72,14 @@ Constraints
       bool res2=binaryTreeSearching(root->right,k);
       return res2;
 
+    }
+
+
+//BRUTE FORCE
+    bool binaryTreeSearching(TreeNode *root, int k)
+    { if(root==NULL)return false;
+      
+      if(root->val==k)return true;
+
+      return binaryTreeSearching(root->left,k) || binaryTreeSearching(root->right,k);
     }
