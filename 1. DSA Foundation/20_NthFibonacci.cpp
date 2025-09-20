@@ -25,3 +25,63 @@ int nthFibonacciNumber(int n){
 
       return nthFibonacciNumber(n-2)+nthFibonacciNumber(n-1);
 }
+
+
+
+
+
+
+
+// Tabulation
+Access web: Turbo
+
+Off
+Disable Access web. You won’t have access to the latest internet data.
+
+Turbo
+Access web in turbo mode. Faster but limited internet access, suited for quick replies.
+
+In-Depth
+PRO
+Access web in-depth mode. Slower but has vast internet access, suited for research purposes.
+
+
+GPT 4o Mini
+
+Hello there! How can I help you today?
+
+int nthFibonacciNumber(int n){
+      if(n==0||n==1)return n;
+
+      return nthFibonacciNumber(n-2)+nthFibonacciNumber(n-1);
+}
+
+apply tabulation
+To convert the recursive Fibonacci function you've provided into a tabulation approach (often referred to as dynamic programming), we will create an array (or a list) to store the Fibonacci numbers as we calculate them, thereby avoiding redundant calculations.
+
+Here is the tabulated version of the Fibonacci function in C++:
+
+cpp
+
+#include <iostream>
+#include <vector>
+
+int nthFibonacciNumber(int n) {
+    // Handle the base cases
+    if (n == 0||n==1) return n;
+
+    // Create a table to store Fibonacci numbers
+    vector<int> fib(n + 1);
+    
+    // Initialize the base cases
+    fib[0] = 0;
+    fib[1] = 1;
+
+    // Fill the table in a bottom-up manner
+    for (int i = 2; i <= n; ++i) {
+        fib[i] = fib[i - 1] + fib[i - 2];
+    }
+
+    // Return the nth Fibonacci number
+    return fib[n];
+}
