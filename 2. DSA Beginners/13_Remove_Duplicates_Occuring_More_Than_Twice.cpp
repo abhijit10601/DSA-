@@ -36,6 +36,37 @@ Constraints
 
 0 <= nums[i] <= 10^6
 */
+
+
+
+//OPtimal
+ int removeDuplicates(vector<int>& nums) {
+        if (nums.empty()) return 0; // Edge case: empty array
+        int i = 0; // Pointer for the result array
+        int count = 1; // Count of occurrences of the current element
+        int j = 1; // Traversal pointer
+        // Traverse the array using a while loop
+        while (j < nums.size()) {
+            // If the current element is the same as the previous one, increment the count
+            if (nums[j] == nums[i]) {
+                count++;
+            } else {
+                // If the current element is different, reset the count
+                count = 1;
+            }
+            // If the count is <= 2, copy the element to the result array
+            if (count <= 2) {
+                i++;
+                nums[i] = nums[j];
+            }
+            j++; // Move to the next element
+        }
+        return i + 1; // Return the number of valid elements
+        }
+
+
+
+// Alternative
 int removeDuplicatesFromSortedArrayII(int n, vector<int>& arr){
  /*
  int newLength=0;
