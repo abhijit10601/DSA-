@@ -24,7 +24,6 @@ As you can see the matrix goes spirally with each next position incremented by o
 Constraints
 1<=A<=1000
 */
-
 vector<vector<int > > spiralMatrixII(int size){
      vector<vector<int > > ans(size,vector<int>(size));
      
@@ -32,40 +31,24 @@ vector<vector<int > > spiralMatrixII(int size){
      int n=size;
      int m=size;
      int left=0,right=m-1,top=0,bottom=n-1;
-     int count=0;
-     int total=n*m;
 
-     while(count<total){
+     while(left <= right && top <=bottom){
          // L->R
-         for(int i=left;i<=right&&count<total;i++){
-             ans[top][i]=element++;            
-             count++;
-         }
+         for(int i=left;i<=right;i++)ans[top][i]=element++;            
          top++;
    
         // T -> B
-        for(int i=top;i<=bottom&&count<total;i++){
-             ans[i][right]=element++;
-             count++;
-         }
-         right--;
+        for(int i=top;i<=bottom;i++)ans[i][right]=element++;
+        right--;
 
         // R -> L
-         for(int i=right;i>=left&&count<total;i--){
-             ans[bottom][i]=element++;
-             count++;
-         }
+         for(int i=right;i>=left;i--)ans[bottom][i]=element++;
          bottom--;
 
          // B -> T
-          for(int i= bottom;i>=top&&count<total;i--){
-             ans[i][left]=element++;
-             count++;
-         }
+        for(int i= bottom;i>=top;i--)ans[i][left]=element++;
         left++;
-
      }
 
      return ans;
-
 }
