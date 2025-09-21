@@ -42,7 +42,7 @@ int nextGreaterElementWithSameSetOfDigits(int n){
             }
       }
 
-      if(pivot==-1)return -1;// cases like 54312
+      if(pivot==-1)return -1;// cases like 54321
       
       int sucessor=-1;
       for(int i=len-1;i>pivot;i--){
