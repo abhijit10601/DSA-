@@ -28,7 +28,26 @@ Explanation 2
 */
 
  int lengthOfLongestSubstring(string s) {
-    
+
+    vector < int > mpp(256, -1);
+
+      int left = 0, right = 0;
+      int n = s.size();
+      int len = 0;
+      while (right < n) {
+        if (mpp[s[right]] != -1)
+          left = max(mpp[s[right]] + 1, left);
+
+        mpp[s[right]] = right;
+
+        len = max(len, right - left + 1);
+        right++;
+      }
+      return len;
+
+
+
+  
     /* Time Complexity- O(N^2) Space Complexity- O(N)
      int maxi=0;
      for(int i=0;i<s.size();i++){
@@ -46,7 +65,7 @@ Explanation 2
      return maxi;*/
 
     // SLIDING WINDOW
-    unordered_set<char> Set;
+  /*  unordered_set<char> Set;
     int left=0;
     int maxi=0;
 
@@ -61,5 +80,5 @@ Explanation 2
         maxi=max(maxi,right-left+1);
     }
     return maxi;
-
+*/
     }
