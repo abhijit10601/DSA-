@@ -93,3 +93,84 @@ string reverseWordsInAString(string s){
     
     return result;
 }
+
+
+// OPTIMAL --> T.C.=O(N), S.C.=O(1)
+string reverseWords(string s) {
+    int n = s.size();
+
+    // Step 1: Reverse the entire string.
+    reverse(s.begin(), s.end());
+
+    // Step 2: Reverse words individually.
+    int start = 0, end = 0;
+    while (end < n) {
+        // Skip leading spaces to find the start of a word.
+        while (start < n && s[start] == ' ')++start;
+
+        end = start;
+
+        // Find the boundary of the word.
+        while (end < n && s[end] != ' ')++end;
+
+        // Reverse the word.
+        reverse(s.begin() + start, s.begin() + end);
+
+        // Move to the next word.
+        start = end;
+    }
+
+    // Step 3: Clean up extra spaces in-place.
+    int read = 0, write = 0;
+
+    while (read < n) {
+
+        // Skip leading spaces.
+        while (read < n && s[read] == ' ')++read;
+
+        // Copy the word.
+        while (read < n && s[read] != ' ')s[write++] = s[read++];
+
+        // Skip multiple spaces.
+        while (read < n && s[read] == ' ')++read;
+
+        // Add a single space if more content exists.
+        if (read < n)s[write++] = ' ';
+    }
+
+    // Return the trimmed result.
+    return s.substr(0, write);
+}
+
+
+
+
+
+
+//T.C.= O(N),S.C.=O(N)
+string reverseWords(string s) {
+    reverse(s.begin(), s.end());
+    string ans;
+    int n = s.length();
+    
+    for (int i = 0; i < n; ++i) {
+        // skip any spaces
+        if (s[i] == ' ') continue;
+        
+        // collect the next word in reversed s
+        string word;
+        while (i < n && s[i] != ' ') {
+            word += s[i++];
+        }
+        
+        // reverse it back
+        reverse(word.begin(), word.end());
+        
+        // append (with leading space if ans not empty) // space between two words 
+        if (!ans.empty())ans += ' ';
+        ans += word;
+    }
+    
+    return ans;
+}
+
