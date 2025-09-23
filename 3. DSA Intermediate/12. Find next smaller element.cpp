@@ -54,7 +54,7 @@ vector<int> nextSmallerElement(vector<int> A){
     vector<int> ans(n,-1);
     stack<int> st;
     for(int i=n-1;i>=0;i--){
-        while(!st.empty()  &&  st.top()>=A[i])st.pop();
+        while(!st.empty()  &&  A[i]<=st.top())st.pop();
 
         //if(st.empty())ans[i]=-1;
         //else ans[i]=st.top();
