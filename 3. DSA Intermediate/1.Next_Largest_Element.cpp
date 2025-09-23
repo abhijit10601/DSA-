@@ -36,7 +36,7 @@ vector<int> nextLargerElement( vector<int>& arr) {
     stack<int> st;
     vector<int> ans;
     for(int i=arr.size()-1;i>=0;i--){
-        while(!st.empty()&&st.top()<=arr[i])st.pop();
+        while(!st.empty()&&arr[i]>=st.top())st.pop();
 
         if(st.empty())ans.push_back(-1);
         else ans.push_back(st.top());
